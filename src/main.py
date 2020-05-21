@@ -27,14 +27,14 @@ def get_alarms():
 
     # serializing as JSON
     session.close()
-    return jsonify(alarms.data)
+    return jsonify(alarms)
 
 
 @app.route('/alarms', methods=['POST'])
 def add_exam():
     # mount alarm object
     posted_alarm = AlarmSchema(only=('importance', 'description')).load(request.get_json())
-    alarm = Alarms(**posted_alarm.data, created_by="HTTP post request")
+    alarm = Alarms(**posted_alarm, created_by="HTTP post request")
 
     # persist alarm
     session = Session()
@@ -42,7 +42,7 @@ def add_exam():
     session.commit()
 
     # return created alarm
-    new_exam = AlarmSchema().dump(alarm).data
+    new_exam = AlarmSchema().dump(alarm)
     session.close()
     return jsonify(new_exam), 201
 

@@ -12,9 +12,9 @@ class Alarms(Entity, Base):
     title = Column(String)
     description = Column(String)
 
-    def __init__(self, title, description, created_by):
+    def __init__(self, importance, description, created_by):
         Entity.__init__(self, created_by)
-        self.title = title
+        self.importance = importance
         self.description = description
 
 
