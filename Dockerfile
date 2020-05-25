@@ -15,4 +15,4 @@ EXPOSE 5000
 
 ENTRYPOINT [ "python" ]
 
-CMD ["src/bootststrap.sh"]
+CMD ["src/bootstrap.sh"]
